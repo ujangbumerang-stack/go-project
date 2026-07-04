@@ -13,12 +13,13 @@ func init() {
 		// Database connections
 		"connections": map[string]any{
 			"postgres": map[string]any{
+				"dsn":      config.Env("DATABASE_URL", ""),
 				"host":     config.Env("DB_HOST"),
 				"port":     config.Env("DB_PORT"),
 				"database": config.Env("DB_DATABASE"),
 				"username": config.Env("DB_USERNAME"),
 				"password": config.Env("DB_PASSWORD"),
-				"sslmode":  "disable",
+				"sslmode":  config.Env("DB_SSLMODE", "disable"),
 				"singular": false,
 				"prefix":   "",
 				"schema":   config.Env("DB_SCHEMA", "public"),
