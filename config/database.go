@@ -2,28 +2,28 @@ package config
 
 import (
 	"github.com/goravel/framework/contracts/database/driver"
-	mysqlfacades "github.com/goravel/mysql/facades"
+	postgresfacades "github.com/goravel/postgres/facades"
 	"cloud-compute/app/facades"
 )
 
 func init() {
 	config := facades.Config()
 	config.Add("database", map[string]any{
-		"default": "mysql",
+		"default": "postgres",
 		// Database connections
 		"connections": map[string]any{
-			"mysql": map[string]any{
+			"postgres": map[string]any{
 				"host":     config.Env("DB_HOST"),
 				"port":     config.Env("DB_PORT"),
 				"database": config.Env("DB_DATABASE"),
 				"username": config.Env("DB_USERNAME"),
 				"password": config.Env("DB_PASSWORD"),
-				"charset":  "utf8mb4",
-				"loc":      "Local",
+				"sslmode":  "disable",
 				"singular": false,
 				"prefix":   "",
+				"schema":   config.Env("DB_SCHEMA", "public"),
 				"via": func() (driver.Driver, error) {
-					return mysqlfacades.Mysql("mysql")
+					return postgresfacades.Postgres("postgres")
 				},
 			},
 		},

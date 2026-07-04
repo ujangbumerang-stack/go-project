@@ -22,7 +22,7 @@ import (
 	"github.com/goravel/framework/validation"
 	"github.com/goravel/framework/view"
 	"github.com/goravel/gin"
-	"github.com/goravel/mysql"
+	"github.com/goravel/postgres"
 )
 
 func Providers() []foundation.ServiceProvider {
@@ -36,7 +36,7 @@ func Providers() []foundation.ServiceProvider {
 		&route.ServiceProvider{},
 		&gin.ServiceProvider{},
 		&database.ServiceProvider{},
-		&mysql.ServiceProvider{},
+		&postgres.ServiceProvider{},
 		&auth.ServiceProvider{},
 		&crypt.ServiceProvider{},
 		&queue.ServiceProvider{},
